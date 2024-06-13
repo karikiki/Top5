@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>A lua e suas resoluções</title>
+<style>
+  body {
+    height: 100%;
+    margin: 0;
+    background-color: black; /* Fundo preto */
+    color: white; /* Texto branco para melhor visibilidade */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza verticalmente */
+  }
+  .container {
+    text-align: center;
+  }
+  .image-box {
+    width: 700px;
+    height: 700px;
+    background-image: url('0.png'); /* Imagem inicial */
+    background-size: cover;
+  }
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 20px 40px; /* Botões maiores para facilitar o toque */
+    margin: 0 10px;
+    background-color: #f0f0f0; /* Cor de fundo padrão */
+    border: none; /* Remover borda */
+    cursor: pointer; /* Cursor de mão ao passar o mouse */
+    font-size: 25px; /* Tamanho de fonte maior */
+    display: none; /* Inicialmente escondido */
+  }
+  button.active {
+    background-color: #d0d0d0; /* Cor de fundo para o botão selecionado */
+  }
+  #btn144p {
+    display: inline-block; /* Apenas o botão 144p é visível inicialmente */
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="image" class="image-box"></div>
+  <div class="button-container">
+    <button id="btn144p" onclick="changeImage('1.png', 'btn240p')">5°</button>
+    <button id="btn240p" onclick="changeImage('2.png', 'btn480p')">4°</button>
+    <button id="btn480p" onclick="changeImage('3.png', 'btn720p')">3°</button>
+    <button id="btn720p" onclick="changeImage('4.png', 'btn1080p')">2°</button>
+    <button id="btn1080p" onclick="changeImage('5.png', '')">1°</button>
+  </div>
+</div>
+
+<script>
+function changeImage(imageName, nextButtonId) {
+  document.getElementById('image').style.backgroundImage = 'url(' + imageName + ')';
+  if (nextButtonId) {
+    document.getElementById(nextButtonId).style.display = 'inline-block';
+    document.getElementById(nextButtonId).classList.add('active'); // Adiciona a classe 'active'
+  }
+  // Remover a classe 'active' dos outros botões
+  const buttons = document.querySelectorAll('.button-container button');
+  buttons.forEach(button => {
+    if (button.id !== nextButtonId) {
+      button.classList.remove('active');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
